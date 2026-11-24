@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyen Hong Cuong | AI for Scientific Discovery & Materials Science</title>
+  <meta name="description" content="Nguyen Hong Cuong — AI Engineer & Research Assistant at College of Engineering & Computer Science, VinUniversity and HySonLab, UAB. Research in AI for Materials Science, GNNs, Geometric Deep Learning, and Equivariant Neural Networks." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #1B365D;
+      --navy-light: #2B4C7E;
+      --crimson: #9E1B32;
+      --teal: #0D7377;
+      --bg: #FFFFFF;
+      --bg-subtle: #F8FAFC;
+      --surface: #FFFFFF;
+      --text: #1E293B;
+      --text-muted: #52627A;
+      --border: #E2E8F0;
+      --tag-bg: #F1F5F9;
+      --tag-text: #334155;
+      --max-w: 920px;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--navy);
+      text-decoration: none;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    a:hover {
+      color: var(--crimson);
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      font-weight: 500;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-left: 0.35rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    nav a:hover {
+      color: var(--navy);
+    }
+
+    /* Layout Container */
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    section {
+      margin-bottom: 3.25rem;
+      scroll-margin-top: 5rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.015em;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title span.sub {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Hero / Profile */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 190px;
+      gap: 2.25rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 0.45rem;
+    }
+
+    .hero-role {
+      font-size: 1.02rem;
+      font-weight: 500;
+      color: var(--crimson);
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-affiliation {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1.15rem;
+    }
+
+    .hero-bio {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.04rem;
+      color: var(--text);
+      margin-bottom: 1.15rem;
+      text-align: left;
+    }
+
+    .hero-bio strong {
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .interest-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid var(--border);
+    }
+
+    .pill.primary {
+      background: #EEF2F7;
+      color: var(--navy);
+      border-color: #CBD5E1;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+      background: var(--bg-subtle);
+    }
+
+    .btn.primary {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy);
+    }
+
+    .btn.primary:hover {
+      background: var(--navy-light);
+      color: #FFFFFF;
+    }
+
+    .btn svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    /* Avatar */
+    .avatar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .avatar-box {
+      width: 180px;
+      height: 180px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--navy) 0%, #2C5282 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(27, 54, 93, 0.08);
+    }
+
+    .avatar-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar-fallback {
+      color: #FFFFFF;
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      display: none;
+    }
+
+    .location-caption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.5;
+    }
+
+    /* News List */
+    .news-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .news-list li {
+      display: grid;
+      grid-template-columns: 95px 1fr;
+      gap: 1rem;
+      font-size: 0.94rem;
+      align-items: baseline;
+    }
+
+    .news-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--teal);
+      background: #F0FDFA;
+      border: 1px solid #CCFBF1;
+      padding: 0.1rem 0.45rem;
+      border-radius: 5px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* Cards (Publications & Research) */
+    .card-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .card {
+      padding: 1.25rem 1.35rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-title {
+      font-size: 1.03rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 500;
+      padding: 0.18rem 0.55rem;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+
+    .badge.venue {
+      background: #FEF2F2;
+      color: var(--crimson);
+      border: 1px solid #FECACA;
+    }
+
+    .badge.active {
+      background: #EEF2F7;
+      color: var(--navy);
+      border: 1px solid #CBD5E1;
+    }
+
+    .badge.date {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .card-meta {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0.55rem;
+    }
+
+    .card-meta strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-bullets {
+      padding-left: 1.15rem;
+      font-size: 0.91rem;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .btn-sm {
+      font-size: 0.8rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      color: var(--navy);
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .btn-sm:hover {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy);
+    }
+
+    .collapsible {
+      display: none;
+      margin-top: 0.85rem;
+      padding: 0.9rem 1rem;
+      border-radius: 7px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      font-size: 0.87rem;
+    }
+
+    .collapsible.open {
+      display: block;
+    }
+
+    .collapsible pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--text);
+      margin-top: 0.35rem;
+    }
+
+    /* Two-column Grids for Skills */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.15rem;
+    }
+
+    .skill-group {
+      padding: 1rem 1.15rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-subtle);
+    }
+
+    .skill-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .skill-group h3 {
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      margin-bottom: 0.55rem;
+    }
+
+    .award-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .award-list li {
+      padding: 0.85rem 1.1rem;
+      border-left: 3px solid var(--navy);
+      background: var(--bg-subtle);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.92rem;
+    }
+
+    .award-list strong {
+      color: var(--navy);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-subtle);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      font-weight: 500;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--navy);
+      color: #FFFFFF;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 200;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 740px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .avatar-wrap {
+        order: -1;
+        align-items: flex-start;
+      }
+      .avatar-box {
+        width: 130px;
+        height: 130px;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .news-list li {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+      .news-date {
+        width: fit-content;
+      }
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-inner">
+      <a href="#" class="brand">Nguyen Hong Cuong <span>· VinUni & HySonLab</span></a>
+      <nav>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#research">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#awards">Awards & Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero / About -->
+    <section class="hero" id="about">
+      <div>
+        <h1>Nguyen Hong Cuong</h1>
+        <div class="hero-role">Research Assistant — AI for Scientific Discovery · AI Engineer</div>
+        <div class="hero-affiliation">
+          College of Engineering & Computer Science, VinUniversity · HySonLab, UAB
+        </div>
+
+        <p class="hero-bio">
+          I am an AI Engineer and early-career researcher with a Computer Science background and hands-on experience developing production-oriented AI systems, including <strong>LLM applications</strong>, <strong>Multi-Agent architectures</strong>, and <strong>GraphRAG pipelines</strong>. My current research interests center on <strong>Artificial Intelligence for Scientific Discovery</strong>—particularly <strong>AI for Materials Science</strong>, alongside <strong>Graph Neural Networks (GNNs)</strong>, <strong>Geometric Deep Learning</strong>, and <strong>Equivariant Neural Networks</strong>.
+        </p>
+        <p class="hero-bio">
+          Currently, I conduct AI for Materials Discovery research at the <strong>College of Engineering & Computer Science, VinUniversity</strong> as part of the interdisciplinary <a href="https://vinmatics-sc.github.io/" target="_blank" rel="noopener">VINMATICS-SC</a> project, and serve as a Research Assistant at <strong>HySonLab, University of Alabama at Birmingham (UAB)</strong> under the supervision of <strong>Prof. Truong-Son Hy</strong>.
+        </p>
+
+        <div class="interest-list">
+          <span class="pill primary">AI for Materials Science</span>
+          <span class="pill primary">Scientific Machine Learning</span>
+          <span class="pill primary">GNNs & Equivariant NNs</span>
+          <span class="pill primary">Geometric Deep Learning</span>
+          <span class="pill">Agentic AI Systems</span>
+          <span class="pill">Multimodal Reasoning (VLMs / VidLMs)</span>
+          <span class="pill">Reliable AI Evaluation</span>
+        </div>
+
+        <div class="social-links">
+          <a class="btn primary" href="mailto:hongcuong0626@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          </a>
+          <a class="btn" href="https://scholar.google.com/citations?user=rdWRZagAAAAJ&hl=vi" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+            Google Scholar
+          </a>
+          <a class="btn" href="https://openreview.net/profile?id=%7ENguyen_Hong_Cuong2" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+            OpenReview
+          </a>
+          <a class="btn" href="https://github.com/hongcuong26-debug" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.73-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+            GitHub
+          </a>
+          <a class="btn" href="https://linkedin.com/in/nghongcuong" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn" href="https://drive.google.com/file/d/1aWyghOehU01zrK950CxyxS3enYOPsCZI/view?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            CV (PDF)
+          </a>
+        </div>
+      </div>
+
+      <div class="avatar-wrap">
+        <div class="avatar-box">
+          <!-- Upload a square portrait named avatar.jpg in the repo root -->
+          <img
+            src="avatar.jpg"
+            alt="Nguyen Hong Cuong"
+            onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='block';"
+          />
+          <div id="avatar-fallback" class="avatar-fallback">HC</div>
+        </div>
+        <div class="location-caption">
+          Hanoi, Vietnam<br />
+          +84 989 808 854<br />
+          hongcuong0626@gmail.com
+        </div>
+      </div>
+    </section>
+
+    <!-- News -->
+    <section id="news">
+      <h2 class="section-title">News & Updates <span class="sub">2025 – 2026</span></h2>
+      <ul class="news-list">
+        <li>
+          <span class="news-date">Nov 2026</span>
+          <span>Completed manuscript draft of <strong>PV-AgentIE</strong> auditing constraint-guided agentic extraction & checker evasion across 3,430 supercapacitor papers for <a href="https://vinmatics-sc.github.io/" target="_blank" rel="noopener">VINMATICS-SC</a>.</span>
+        </li>
+        <li>
+          <span class="news-date">2026</span>
+          <span>Joined the <strong>College of Engineering & Computer Science, VinUniversity</strong> as Research Assistant on the interdisciplinary <strong>VINMATICS-SC</strong> materials discovery project.</span>
+        </li>
+        <li>
+          <span class="news-date">2026</span>
+          <span>Joined <strong>HySonLab, University of Alabama at Birmingham (UAB)</strong> as Research Assistant under <strong>Prof. Truong-Son Hy</strong>, focusing on GNNs and Equivariant Neural Networks.</span>
+        </li>
+        <li>
+          <span class="news-date">2026</span>
+          <span>Awarded <strong>Top Graduation Thesis Award (9.8/10.0)</strong> — highest thesis score in the Department of Computer Science, Nguyen Tat Thanh University.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Publications & Manuscripts -->
+    <section id="publications">
+      <h2 class="section-title">Publications & Manuscripts <span class="sub">Preprints & In Prep</span></h2>
+      <div class="card-stack">
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-title">
+              PV-AgentIE: Auditing Constraint-Guided Agentic Information Extraction for Electrochemical Knowledge Bases
+            </div>
+            <span class="badge venue">Manuscript · 2026</span>
+          </div>
+          <div class="card-meta">
+            <strong>Nguyen Hong Cuong</strong>, et al. · <em>VinUniversity (VINMATICS-SC Project)</em>
+          </div>
+          <p class="card-desc">
+            A two-agent cross-section table–text extraction and physics-verification workflow auditing <em>checker evasion</em> vs. genuine repair and faithful abstention across 3,430 supercapacitor papers, Eval-50/Bench-200 benchmarks, and six LLM backbones.
+          </p>
+          <div class="card-actions">
+            <button class="btn-sm" onclick="toggleBox('abs-pv')">Abstract</button>
+            <button class="btn-sm" onclick="toggleBox('bib-pv')">BibTeX</button>
+            <a class="btn-sm" href="https://vinmatics-sc.github.io/" target="_blank" rel="noopener">Project Page (VINMATICS-SC)</a>
+          </div>
+          <div id="abs-pv" class="collapsible">
+            <strong>Abstract:</strong> Scientific extraction agents pair large language models (LLMs) with executable domain checks, yet external validator feedback can induce superficial compliance (<em>checker evasion</em>) rather than source-faithful repair. We present and audit <strong>PV-AgentIE</strong>, coupling full-context cross-section extraction with deterministic electrochemical verification (<em>E–C–ΔV</em> conservation and 3E/2E isolation) and two-round rationale-logged reflection. On human-verified Eval-50 (397 gold records), PV-AgentIE achieves <strong>87.1% F1</strong> (+8.0 pp over paired Pre-Critic) with zero checker evasions, while exposing three distinct evasion mechanisms across five of six audited LLM backbones and programmatic heuristics.
+          </div>
+          <div id="bib-pv" class="collapsible">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong>BibTeX</strong>
+              <button class="btn-sm" onclick="copyText('bib-pv-code')">Copy</button>
+            </div>
+<pre id="bib-pv-code">@misc{nguyen2026pvagentie,
+  title  = {PV-AgentIE: Auditing Constraint-Guided Agentic Information Extraction for Electrochemical Knowledge Bases},
+  author = {Nguyen, Hong Cuong and VINMATICS-SC Research Team},
+  year   = {2026},
+  note   = {Manuscript, College of Engineering \& Computer Science, VinUniversity}
+}</pre>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Research Experience -->
+    <section id="research">
+      <h2 class="section-title">Research Experience</h2>
+      <div class="card-stack">
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-title">College of Engineering & Computer Science, VinUniversity</div>
+            <span class="badge date">2026 – Present · Hanoi, Vietnam</span>
+          </div>
+          <div class="card-meta">
+            <strong>Research Assistant — AI for Materials Discovery</strong> · Project: <a href="https://vinmatics-sc.github.io/" target="_blank" rel="noopener">VINMATICS-SC</a>
+          </div>
+          <ul class="card-bullets">
+            <li>Conducting research on AI for Materials Science and AI-driven scientific discovery as part of the interdisciplinary <strong>VINMATICS-SC</strong> project.</li>
+            <li>Investigating machine learning approaches for supercapacitor materials discovery, automated literature curation, data integration, and data-driven materials modeling.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-title">HySonLab, Department of Computer Science, University of Alabama at Birmingham (UAB)</div>
+            <span class="badge date">2026 – Present · Birmingham, Alabama, USA</span>
+          </div>
+          <div class="card-meta">
+            <strong>Research Assistant — AI for Scientific Discovery</strong> · Research Supervisor: <strong>Prof. Truong-Son Hy</strong>
+          </div>
+          <ul class="card-bullets">
+            <li>Conducting research in AI for Scientific Discovery, focusing on Graph Neural Networks (GNNs), Geometric Deep Learning, and Equivariant Neural Networks.</li>
+            <li>Studying molecular and materials representations, graph-based learning methods, and scientific machine learning literature.</li>
+            <li>Conducting foundational experiments with PyTorch Geometric to investigate geometric deep learning methods for scientific and materials-related applications.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Production Engineering Experience -->
+    <section id="experience">
+      <h2 class="section-title">Production Engineering Experience</h2>
+      <div class="card-stack">
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-title">AMOIQ — Core AI / Backend Engineer</div>
+            <span class="badge date">Jan 2026 – Sep 2026 · California, USA (Remote)</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Developed <strong>AmoIQ EIOS</strong>, an AI orchestration layer integrating 20+ platforms, live with 5 beta tenants and 100+ daily users.</li>
+            <li>Designed a configuration-driven Multi-Agent engine compiling database execution graphs into LangGraph pipelines.</li>
+            <li>Built a unified tool registry supporting 170+ business actions with Pydantic validation and 5 reusable routing modes.</li>
+            <li>Architected a 5-tier memory system with Redis semantic caching, reducing query recall latency by approximately 73%; implemented Neo4j GraphRAG for multi-hop reasoning.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-title">CMC Global Company Limited — Artificial Intelligence Engineer</div>
+            <span class="badge date">Jan 2026 – Sep 2026 · Ho Chi Minh City, Vietnam</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Designed and deployed enterprise OCR pipelines using Azure Document Intelligence to extract key-value data from complex administrative documents into PostgreSQL.</li>
+            <li>Optimized prompts on Azure AI Services for structured document understanding and reasoning consistency.</li>
+            <li>Built AI microservice integrations connecting enterprise backends with mobile gateways through REST APIs and Microsoft Power Automate.</li>
+            <li>Evaluated LLM-powered outbound voicebot systems, analyzing behavioral failure modes and reducing hallucinations and response latency.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-title">Bosch Global Software Technologies — Artificial Intelligence Engineer Intern</div>
+            <span class="badge date">Jan 2025 – Jul 2025 · Ho Chi Minh City, Vietnam</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Developed an AI-powered Deep Research platform integrating SearXNG, Tavily, and Market Mind for multi-source retrieval, synthesis, and report generation.</li>
+            <li>Designed multi-stage LLM workflows using GPT-4 and LangGraph for research planning, requirement refinement, evidence synthesis, and presentation generation.</li>
+            <li>Deployed enterprise AI applications on on-premise infrastructure, including system configuration, deployment automation, and production integration.</li>
+            <li>Conducted large-scale validation, usability testing, and edge-case analysis to improve the robustness of AI-generated reports.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="card">
+        <div class="card-top">
+          <div class="card-title">Nguyen Tat Thanh University</div>
+          <span class="badge date">2022 – 2026 · Ho Chi Minh City, Vietnam</span>
+        </div>
+        <div class="card-meta"><strong>Bachelor of Engineering in Computer Science</strong></div>
+        <p class="card-desc" style="margin-bottom:0;">
+          Graduation thesis: <em>SpaBot Multi-Agent AI Chatbot System</em> — thesis grade: <strong>9.8 / 10.0</strong> (Top Graduation Thesis Award, Department of Computer Science).
+        </p>
+      </div>
+    </section>
+
+    <!-- Honors & Technical Skills -->
+    <section id="awards">
+      <h2 class="section-title">Honors, Awards & Technical Skills</h2>
+      <ul class="award-list" style="margin-bottom: 1.5rem;">
+        <li><strong>Top Graduation Thesis Award (2026):</strong> Highest thesis score (9.8/10.0) in the Department of Computer Science, Nguyen Tat Thanh University.</li>
+        <li><strong>3rd Prize — FIT-NTTU Data Science Competition (2025):</strong> Awarded for the Industrial Predictive Maintenance Multimodal System.</li>
+        <li><strong>Top 12 Finalist — Bosch CodeRace Challenge (2025):</strong> National software engineering competition organized by Bosch Global Software Technologies.</li>
+      </ul>
+
+      <div class="grid-2">
+        <div class="skill-group">
+          <h3>Programming</h3>
+          <div class="interest-list" style="margin-bottom:0;">
+            <span class="pill">Python</span>
+            <span class="pill">SQL</span>
+            <span class="pill">REST APIs</span>
+            <span class="pill">JSON Schema</span>
+            <span class="pill">Pydantic</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>AI / ML / Agents</h3>
+          <div class="interest-list" style="margin-bottom:0;">
+            <span class="pill">LangGraph</span>
+            <span class="pill">GraphRAG</span>
+            <span class="pill">Multi-Agent Systems</span>
+            <span class="pill">Agentic RAG</span>
+            <span class="pill">PyTorch</span>
+            <span class="pill">PyTorch Geometric</span>
+            <span class="pill">Scikit-learn</span>
+            <span class="pill">BERT</span>
+            <span class="pill">Isolation Forest</span>
+            <span class="pill">Azure AI</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Computer Vision / Multimodal</h3>
+          <div class="interest-list" style="margin-bottom:0;">
+            <span class="pill">OpenCV</span>
+            <span class="pill">OCR</span>
+            <span class="pill">Azure Document Intelligence</span>
+            <span class="pill">CVAT</span>
+            <span class="pill">SAM2</span>
+            <span class="pill">Label Studio</span>
+            <span class="pill">Spatiotemporal Tracking</span>
+            <span class="pill">Benchmark Design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Databases & Infrastructure</h3>
+          <div class="interest-list" style="margin-bottom:0;">
+            <span class="pill">Neo4j</span>
+            <span class="pill">Qdrant</span>
+            <span class="pill">Pinecone</span>
+            <span class="pill">Redis</span>
+            <span class="pill">PostgreSQL</span>
+            <span class="pill">MySQL</span>
+            <span class="pill">Supabase</span>
+            <span class="pill">Docker</span>
+            <span class="pill">Linux (Ubuntu)</span>
+            <span class="pill">Git / GitLab CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-group full">
+          <h3>Languages</h3>
+          <div class="interest-list" style="margin-bottom:0;">
+            <span class="pill primary">Vietnamese (Native)</span>
+            <span class="pill primary">English (TOEIC 705)</span>
+            <span class="pill primary">Chinese (HSK 4)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      © 2026 <strong>Nguyen Hong Cuong</strong> · College of Engineering & Computer Science, VinUniversity.<br />
+      Hosted on <a href="https://hongcuong-nguyen.github.io/" target="_blank" rel="noopener">GitHub Pages</a> · Last updated: November 2026.
+    </p>
+  </footer>
+
+  <div id="toast">Copied BibTeX to clipboard</div>
+
+  <script>
+    function toggleBox(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('open');
+    }
+
+    function copyText(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      });
+    }
+  </script>
+</body>
+</html>
